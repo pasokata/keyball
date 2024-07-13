@@ -155,7 +155,6 @@ typedef struct {
     bool this_have_ball;
     bool that_enable;
     bool that_have_ball;
-
     keyball_motion_t this_motion;
     keyball_motion_t that_motion;
 

@@ -45,21 +45,18 @@ tap_dance_action_t tap_dance_actions[] = {
 enum custom_keycodes
 {
   MACRO1 = KEYBALL_SAFE_RANGE,
+  H_SCRL
 };
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
   switch (keycode)
   {
   case MACRO1:
-    if (record->event.pressed)
-    {
-      // when keycode QMKBEST is pressed
-      SEND_STRING(MACRO1_STR);
-    }
-    else
-    {
-      // when keycode QMKBEST is released
-    }
+    if(record->event.pressed)SEND_STRING(MACRO1_STR);
+    break;
+  case H_SCRL:
+    if(record->event.pressed)keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_HORIZONTAL);
+    else keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
     break;
   }
   return true;
@@ -96,10 +93,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______  , _______  , _______  , _______  , _______  , _______  ,      LCA(KC_T) ,  RCTL(KC_GRV)     , _______          , _______        , _______       , _______ 
   ),
   [4] = LAYOUT_universal(
-    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN4  , _______  , _______  , KC_BTN5  , _______  ,
     _______  , _______  , _______  , _______  , _______  ,                            _______  , _______  , _______  , _______  , _______  ,
+    _______  , _______  , _______  , _______  , _______  ,                            _______  , SCRL_TO  , H_SCRL   , _______  , _______  ,
     _______  , _______  , _______  , _______  , _______  ,                            _______  , KC_BTN1  , KC_BTN3  , KC_BTN2  , TG(4)    ,
-    _______  , _______  , _______  , _______  , _______  , _______  ,      _______   ,_______  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
+    _______  , _______  , _______  , _______  , _______  , _______  ,      KC_BTN4,   KC_BTN5  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
   ),
 };
 // clang-format on
@@ -122,7 +119,12 @@ layer_state_set_user(layer_state_t state)
     rgblight_sethsv(HSV_PURPLE);
     break;
   case 4:
-    rgblight_sethsv(HSV_RED);
+    if (keyball_get_scrollsnap_mode() == KEYBALL_SCROLLSNAP_MODE_HORIZONTAL){
+      rgblight_sethsv(HSV_BLUE);
+    }
+    else{
+      rgblight_sethsv(HSV_RED);
+    }
     break;
   }
   // LOWER + RAISE = ADJUST のようなTri Layersを使う場合
@@ -157,7 +159,3 @@ void oledkit_render_info_user(void)
 }
 #endif
 
-void pointing_device_init_user(void)
-{
-  set_auto_mouse_enable(true); // always required before the auto mouse feature will work
-}

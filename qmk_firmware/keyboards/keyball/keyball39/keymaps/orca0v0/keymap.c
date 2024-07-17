@@ -66,24 +66,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default
   [0] = LAYOUT_universal(
-    TD(TD_QC)   , KC_W     , KC_E     , KC_R         , KC_T         ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
+    KC_Q        , KC_W     , KC_E     , KC_R         , KC_T         ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
     KC_A        , KC_S     , KC_D     , KC_F         , KC_G         ,                            KC_H     , KC_J     , KC_K     , KC_L     , RCTL_T(KC_ENT),
-    TD(TD_ZS)   , KC_X     , KC_C     , KC_V         , KC_B         ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_RSFT,
-    KC_LGUI     , KC_LCTL  , KC_LSFT  , LT(1,KC_TAB) , LT(2,KC_SPC) , LT(3,KC_ESC),     KC_RALT, KC_BSPC  , XXXXXXX  , XXXXXXX  , XXXXXXX  , KC_RGUI
+    KC_Z        , KC_X     , KC_C     , KC_V         , KC_B         ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , RSFT_T(KC_BSPC),
+    _______     , KC_LGUI  , KC_LCTL  , LSFT_T(KC_TAB) , LT(2,KC_SPC) , LT(3,KC_ESC),     KC_RALT, MO(1)  , XXXXXXX  , XXXXXXX  , XXXXXXX  , TG(4)
   ),
 
   [1] = LAYOUT_universal(
-    S(KC_5)  , S(KC_6)  , S(KC_7)  , S(KC_4)  , KC_SLSH  ,                             KC_BSLS        , S(KC_LBRC) , S(KC_RBRC) , S(KC_COMM) , S(KC_DOT)   ,
-    S(KC_2)  , S(KC_3)  , S(KC_8)  , S(KC_EQL), KC_EQL  ,                              S(KC_MINS)     , S(KC_9)    , S(KC_0)    , KC_SCLN    , S(KC_SCLN)  ,
-    KC_GRV   ,S(KC_GRV) , KC_MINUS , S(KC_1)  , S(KC_SLSH) ,                           S(KC_BSLS)     , KC_LBRC    , KC_RBRC    , KC_QUOT    , S(KC_QUOT)  ,
-    _______  , _______  , _______  , _______  , _______  , _______  ,      KC_BTN4,    KC_BTN5        , XXXXXXX    , XXXXXXX    , XXXXXXX    , _______
+    S(KC_5)  , S(KC_6)  , S(KC_7)  , S(KC_4)  , KC_SLSH  ,                                      KC_BSLS    , S(KC_LBRC) , S(KC_RBRC) , S(KC_COMM) , S(KC_DOT)   ,
+    S(KC_2)  , S(KC_3)  , S(KC_8)  , S(KC_EQL), KC_EQL  ,                                       S(KC_MINS) , S(KC_9)    , S(KC_0)    , KC_SCLN    , S(KC_SCLN)  ,
+    KC_GRV   ,S(KC_GRV) , KC_MINUS , S(KC_1)  , S(KC_SLSH) ,                                    S(KC_BSLS) , KC_LBRC    , KC_RBRC    , KC_QUOT    , S(KC_QUOT)  ,
+    _______  , _______  , _______  , _______  , _______  , _______  ,                  _______ , _______   , XXXXXXX    , XXXXXXX    , XXXXXXX    , _______
   ),
 
   [2] = LAYOUT_universal(
-    XXXXXXX  , KC_7     , KC_8     , KC_9     , XXXXXXX  ,                            XXXXXXX , KC_HOME , XXXXXXX , KC_END  , XXXXXXX ,
-    KC_0     , KC_4     , KC_5     , KC_6     , XXXXXXX  ,                            KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , KC_RCTL,
-    XXXXXXX  , KC_1     , KC_2     , KC_3     , XXXXXXX  ,                            XXXXXXX , RSA(KC_RBRC), RSA(KC_LBRC), XXXXXXX , KC_RSFT,
-    _______  , _______  , _______  , _______  , _______  , _______ ,       KC_RALT ,  KC_BSPC , XXXXXXX , XXXXXXX , XXXXXXX , _______
+    XXXXXXX  , KC_7     , KC_8     , KC_9     , XXXXXXX  ,                                        XXXXXXX , KC_HOME     , XXXXXXX     , KC_END  , XXXXXXX,
+    KC_0     , KC_4     , KC_5     , KC_6     , XXXXXXX  ,                                        KC_LEFT , KC_DOWN     , KC_UP       , KC_RGHT , KC_RCTL,
+    XXXXXXX  , KC_1     , KC_2     , KC_3     , XXXXXXX  ,                                        XXXXXXX , RSA(KC_RBRC), RSA(KC_LBRC), XXXXXXX , RSFT_T(KC_BSPC),
+    _______  , _______  , _______  , _______  , _______  , _______ ,                   _______ ,  _______ , XXXXXXX     , XXXXXXX     , XXXXXXX , _______
   ),
 
   [3] = LAYOUT_universal(
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [4] = LAYOUT_universal(
     _______  , _______  , _______  , _______  , _______  ,                            _______  , _______  , _______  , _______  , _______  ,
     _______  , _______  , _______  , _______  , _______  ,                            _______  , SCRL_TO  , H_SCRL   , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            _______  , KC_BTN1  , KC_BTN3  , KC_BTN2  , TG(4)    ,
+    _______  , _______  , _______  , _______  , _______  ,                            _______  , KC_BTN1  , KC_BTN3  , KC_BTN2  , TT(4)    ,
     _______  , _______  , _______  , _______  , _______  , _______  ,      KC_BTN4,   KC_BTN5  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
   ),
 };
@@ -119,11 +119,12 @@ layer_state_set_user(layer_state_t state)
     rgblight_sethsv(HSV_PURPLE);
     break;
   case 4:
-    if (keyball_get_scrollsnap_mode() == KEYBALL_SCROLLSNAP_MODE_HORIZONTAL){
+    if (keyball_get_scroll_mode())
+    {
       rgblight_sethsv(HSV_BLUE);
     }
     else{
-      rgblight_sethsv(HSV_RED);
+        rgblight_sethsv(HSV_RED);
     }
     break;
   }
@@ -131,19 +132,7 @@ layer_state_set_user(layer_state_t state)
   // これを先に書いておかないと3の色がおかしくなる
   // state = update_tri_layer_state(state, 1, 2, 3);
 
-  uint8_t highest_layer = get_highest_layer(remove_auto_mouse_layer(state, true));
-  if (highest_layer == 1 || highest_layer == 2 || highest_layer == 3)
-  {
-    // remove_auto_mouse_target must be called to adjust state *before* setting enable
-    state = remove_auto_mouse_layer(state, false);
-    set_auto_mouse_enable(false);
-    keyball_set_scroll_mode(true);
-  }
-  else
-  {
-    set_auto_mouse_enable(true);
-    keyball_set_scroll_mode(false);
-  }
+  set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
   return state;
 }
 
@@ -159,3 +148,7 @@ void oledkit_render_info_user(void)
 }
 #endif
 
+void pointing_device_init_user(void)
+{
+  set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+}

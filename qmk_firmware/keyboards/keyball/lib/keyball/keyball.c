@@ -711,12 +711,6 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
             case SCRL_TO:
                 keyball_set_scroll_mode(!keyball.scroll_mode);
-                if(keyball_get_scroll_mode()){
-                    rgblight_sethsv(HSV_BLUE);
-                }
-                else{
-                    rgblight_sethsv(HSV_RED);
-                }
                 break;
             case SCRL_DVI:
                 add_scroll_div(1);

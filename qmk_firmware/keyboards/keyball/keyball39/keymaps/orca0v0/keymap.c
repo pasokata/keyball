@@ -94,8 +94,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [4] = LAYOUT_universal(
     _______  , _______  , _______  , _______  , _______  ,                            _______  , _______  , _______  , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            _______  , SCRL_TO  , H_SCRL   , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            _______  , KC_BTN1  , KC_BTN3  , KC_BTN2  , TT(4)    ,
+    _______  , _______  , _______  , _______  , _______  ,                            _______  , SCRL_MO  , H_SCRL   , _______  , _______  ,
+    _______  , _______  , _______  , _______  , _______  ,                            _______  , KC_BTN1  , KC_BTN3  , KC_BTN2  , MO(4)    ,
     _______  , _______  , _______  , _______  , _______  , _______  ,      KC_BTN4,   KC_BTN5  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
   ),
 };
@@ -119,20 +119,13 @@ layer_state_set_user(layer_state_t state)
     rgblight_sethsv(HSV_PURPLE);
     break;
   case 4:
-    if (keyball_get_scroll_mode())
-    {
-      rgblight_sethsv(HSV_BLUE);
-    }
-    else{
-        rgblight_sethsv(HSV_RED);
-    }
+    rgblight_sethsv(HSV_RED);
     break;
   }
   // LOWER + RAISE = ADJUST のようなTri Layersを使う場合
   // これを先に書いておかないと3の色がおかしくなる
   // state = update_tri_layer_state(state, 1, 2, 3);
 
-  set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
   return state;
 }
 
@@ -148,7 +141,9 @@ void oledkit_render_info_user(void)
 }
 #endif
 
-void pointing_device_init_user(void)
+#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+void keyboard_post_init_user(void)
 {
-  set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+  set_auto_mouse_enable(true);
 }
+#endif

@@ -21,42 +21,76 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "quantum.h"
 #include "lib/keyball/keyball.h"
 
-// Tap Dance Declarations
-enum
-{
-  TD_ESC_CAPS = 0,
-  TD_GA,
-  TD_EC,
-  TD_QC,
-  TD_ZS,
-};
-
-// Tap Dance Definitions
-tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for Esc, twice for Caps Lock
-    [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
-    // Other declarations would go here, separated by commas, if you have them
-    [TD_GA] = ACTION_TAP_DANCE_DOUBLE(KC_RGUI, KC_RALT),
-    [TD_QC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_LCTL),
-    [TD_ZS] = ACTION_TAP_DANCE_DOUBLE(KC_Z, KC_LSFT),
-};
 
 #include "secret.h"
 enum custom_keycodes
 {
   MACRO1 = KEYBALL_SAFE_RANGE,
-  H_SCRL
+  H_SCRL,
+  MY_HOME,
+  MY_END,
 };
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
+  os_variant_t os = detected_host_os();
   switch (keycode)
   {
   case MACRO1:
     if(record->event.pressed)SEND_STRING(MACRO1_STR);
+    return false;
     break;
   case H_SCRL:
     if(record->event.pressed)keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_HORIZONTAL);
     else keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
+    return false;
+    break;
+  case MY_HOME:
+    if (record->event.pressed)
+    {
+      if (os == OS_MACOS)
+      {
+        register_code(KC_LALT); // GUI and ALT are swapped in macOS
+        register_code(KC_LEFT);
+      }
+      else {
+        register_code(KC_HOME);
+      }
+    }
+    else {
+      if (os == OS_MACOS)
+      {
+        unregister_code(KC_LEFT);
+        unregister_code(KC_LALT);
+      }
+      else {
+        unregister_code(KC_HOME);
+      }
+    }
+    return false;
+    break;
+  case MY_END:
+    if (record->event.pressed)
+    {
+      if (os == OS_MACOS)
+      {
+        register_code(KC_LALT);
+        register_code(KC_RIGHT);
+      }
+      else {
+        register_code(KC_END);
+      }
+    }
+    else {
+      if (os == OS_MACOS)
+      {
+        unregister_code(KC_RIGHT);
+        unregister_code(KC_LALT);
+      }
+      else {
+        unregister_code(KC_END);
+      }
+    }
+    return false;
     break;
   }
   return true;
@@ -69,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q        , KC_W     , KC_E     , KC_R         , KC_T         ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
     KC_A        , KC_S     , KC_D     , KC_F         , KC_G         ,                            KC_H     , KC_J     , KC_K     , KC_L     , RCTL_T(KC_ENT),
     KC_Z        , KC_X     , KC_C     , KC_V         , KC_B         ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , RSFT_T(KC_BSPC),
-    _______     , KC_LGUI  , KC_LCTL  , LSFT_T(KC_TAB) , LT(2,KC_SPC) , LT(3,KC_ESC),     KC_RALT, MO(1)  , XXXXXXX  , XXXXXXX  , XXXXXXX  , TG(4)
+    _______     , KC_LGUI  , KC_LCTL  , LSFT_T(KC_TAB) , LT(2,KC_SPC) , LT(3,KC_ESC),     KC_RALT, MO(1)  , XXXXXXX  , XXXXXXX  , XXXXXXX  , SCRL_TO
   ),
 
   [1] = LAYOUT_universal(
@@ -80,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [2] = LAYOUT_universal(
-    XXXXXXX  , KC_7     , KC_8     , KC_9     , XXXXXXX  ,                                        XXXXXXX , KC_HOME     , XXXXXXX     , KC_END  , XXXXXXX,
+    XXXXXXX  , KC_7     , KC_8     , KC_9     , XXXXXXX  ,                                        XXXXXXX , MY_HOME     , XXXXXXX     , MY_END  , XXXXXXX,
     KC_0     , KC_4     , KC_5     , KC_6     , XXXXXXX  ,                                        KC_LEFT , KC_DOWN     , KC_UP       , KC_RGHT , KC_RCTL,
     XXXXXXX  , KC_1     , KC_2     , KC_3     , XXXXXXX  ,                                        XXXXXXX , RSA(KC_RBRC), RSA(KC_LBRC), XXXXXXX , RSFT_T(KC_BSPC),
     _______  , _______  , _______  , _______  , _______  , _______ ,                   _______ ,  _______ , XXXXXXX     , XXXXXXX     , XXXXXXX , _______
@@ -94,9 +128,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [4] = LAYOUT_universal(
     _______  , _______  , _______  , _______  , _______  ,                            _______  , _______  , _______  , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            _______  , SCRL_MO  , H_SCRL   , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            _______  , KC_BTN1  , KC_BTN3  , KC_BTN2  , MO(4)    ,
-    _______  , _______  , _______  , _______  , _______  , _______  ,      KC_BTN4,   KC_BTN5  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
+    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN5  , SCRL_MO  , H_SCRL   , _______  , _______  ,
+    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , OSL(4)    ,
+    _______  , _______  , _______  , _______  , _______  , _______  ,      _______,   _______  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
   ),
 };
 // clang-format on
@@ -108,6 +142,7 @@ layer_state_set_user(layer_state_t state)
   {
   case 0:
     rgblight_sethsv(HSV_OFF);
+    keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
     break;
   case 1:
     rgblight_sethsv(HSV_PINK);

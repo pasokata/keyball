@@ -51,11 +51,11 @@ void switch_key_by_os(uint16_t macos_key, uint16_t other_key, keyrecord_t *recor
   os_variant_t os = detected_host_os();
   if (record->event.pressed)
   {
-    register_code(os == OS_MACOS ? macos_key : other_key);
+    register_code16(os == OS_MACOS ? macos_key : other_key);
   }
   else
   {
-    unregister_code(os == OS_MACOS ? macos_key : other_key);
+    unregister_code16(os == OS_MACOS ? macos_key : other_key);
   }
 }
 
@@ -85,9 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [NUM] = LAYOUT_universal(
-    KC_7        , KC_5     , KC_3     , KC_1         , KC_9         ,                                 KC_8     , KC_0     , KC_2     , KC_4     , KC_6,
-    OS_CTRL     , OS_ALT   , OS_CMD   , OS_SHFT      , KC_F11       ,                                 KC_F10   , OS_SHFT  , OS_CMD   , OS_ALT   , OS_CTRL,
-    KC_F7       , KC_F5    , KC_F3    , KC_F1        , KC_F9        ,                                 KC_F8    , KC_F12   , KC_F2    , KC_F4    , KC_F6,
+    KC_1        , KC_2     , KC_3     , KC_4         , KC_5         ,                                 KC_6     , KC_7     , KC_8     , KC_9     , KC_0,
+    OS_CTRL     , OS_ALT   , OS_CMD   , OS_SHFT      , KC_F11       ,                                 KC_F12   , OS_SHFT  , OS_CMD   , OS_ALT   , OS_CTRL,
+    KC_F1       , KC_F2    , KC_F3    , KC_F4        , KC_F5        ,                                 KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10,
     _______     , _______  , _______  , _______      , _______      , _______  ,          _______ ,  _______   , _______  , _______  , _______  , _______ 
   ),
   [MOU] = LAYOUT_universal(
@@ -154,6 +154,7 @@ bool is_oneshot_ignored_key(uint16_t keycode)
 
 bool sw_win_active = false;
 bool sw_lang_active = false;
+bool sw_tab_active = false;
 
 oneshot_state os_shft_state = os_up_unqueued;
 oneshot_state os_ctrl_state = os_up_unqueued;
@@ -187,7 +188,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       &sw_lang_active, KC_LCTL, KC_SPC, SW_LANG,
       keycode, record);
   update_swapper(
-      &sw_lang_active, KC_LCTL, KC_TAB, SW_TAB,
+      &sw_tab_active, KC_LCTL, KC_TAB, SW_TAB,
       keycode, record);
 
   update_oneshot(

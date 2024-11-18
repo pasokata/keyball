@@ -22,10 +22,10 @@
 enum layers
 {
   DEF,
+  MOU,
   SYM,
   NAV,
   NUM,
-  MOU,
 };
 
 enum custom_keycodes
@@ -69,33 +69,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Z        , KC_X     , KC_C     , KC_V         , KC_B         ,                                 KC_K     , KC_M     , KC_COMM  , KC_DOT   , KC_SCLN,
     _______     , _______  , _______  , KC_LSFT      , LA_NAV      , KC_TAB,               KC_SPC,   LA_SYM    , XXXXXXX  , XXXXXXX  , XXXXXXX  , SCRL_TO
   ),
-
+  [MOU] = LAYOUT_universal(
+    _______  , _______  , _______  , _______  , _______  ,                            _______  , _______  , _______  , _______  , _______  ,
+    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN5  , SCRL_MO  , H_SCRL   , _______  , _______  ,
+    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , OSL(MOU)    ,
+    _______  , _______  , _______  , _______  , _______  , _______  ,      _______,   _______  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
+  ),
   [SYM] = LAYOUT_universal(
     KC_ESC      , KC_LBRC  , KC_LCBR  , KC_LPRN      , KC_TILD      ,                                KC_CIRC   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_GRV ,
     KC_MINS     , KC_ASTR  , KC_EQL   , KC_UNDS      , KC_DLR       ,                                KC_HASH   , OS_SHFT  , OS_CMD   , OS_ALT   , OS_CTRL,
     KC_PLUS     , KC_PIPE  , KC_AT    , KC_SLSH      , KC_PERC      ,                                XXXXXXX   , KC_BSLS  , KC_AMPR  , KC_QUES  , KC_EXLM,
-    _______     , _______  , _______  , _______      , _______      , _______   ,         _______ ,  _______   , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
+    _______     , MACRO1   , _______  , _______      , _______      , _______   ,         _______ ,  _______   , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),
-
   [NAV] = LAYOUT_universal(
     KC_TAB      , SW_WIN   , TAB_L    , TAB_R        , KC_VOLU      ,                                KC_CAPS   , MY_HOME  , KC_UP    , MY_END   , KC_DEL,
     OS_CTRL     , OS_ALT   , OS_CMD   , OS_SHFT      , KC_VOLD      ,                                XXXXXXX   , KC_LEFT  , KC_DOWN  , KC_RGHT  , KC_BSPC,
     SPACE_L     , SPACE_R  , BACK     , FWD          , KC_MUTE      ,                                SW_TAB    , KC_PGDN  , KC_PGUP  , SW_LANG  , KC_ENT,
-    _______     , _______  , _______  , _______      , _______      ,  _______ ,           MACRO1  ,   _______ , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
+    _______     , _______  , _______  , _______      , _______      ,  _______ ,           _______  ,   _______ , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),
-
   [NUM] = LAYOUT_universal(
     KC_1        , KC_2     , KC_3     , KC_4         , KC_5         ,                                 KC_6     , KC_7     , KC_8     , KC_9     , KC_0,
     OS_CTRL     , OS_ALT   , OS_CMD   , OS_SHFT      , KC_F11       ,                                 KC_F12   , OS_SHFT  , OS_CMD   , OS_ALT   , OS_CTRL,
     KC_F1       , KC_F2    , KC_F3    , KC_F4        , KC_F5        ,                                 KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10,
     _______     , _______  , _______  , _______      , _______      , _______  ,          _______ ,  _______   , _______  , _______  , _______  , _______ 
-  ),
-  [MOU] = LAYOUT_universal(
-    _______  , _______  , _______  , _______  , _______  ,                            _______  , _______  , _______  , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN5  , SCRL_MO  , H_SCRL   , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , OSL(4)    ,
-    _______  , _______  , _______  , _______  , _______  , _______  ,      _______,   _______  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
-  ),
+  )
 };
 // clang-format on
 layer_state_t layer_state_set_user(layer_state_t state)
@@ -103,20 +100,20 @@ layer_state_t layer_state_set_user(layer_state_t state)
   state = update_tri_layer_state(state, SYM, NAV, NUM);
   switch (get_highest_layer(state))
   {
-  case 0:
+  case DEF:
     rgblight_sethsv(HSV_OFF);
     keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
     break;
-  case 1:
+  case SYM:
     rgblight_sethsv(HSV_PINK);
     break;
-  case 2:
+  case NAV:
     rgblight_sethsv(HSV_MAGENTA);
     break;
-  case 3:
+  case NUM:
     rgblight_sethsv(HSV_PURPLE);
     break;
-  case 4:
+  case MOU:
     rgblight_sethsv(HSV_RED);
     break;
   }

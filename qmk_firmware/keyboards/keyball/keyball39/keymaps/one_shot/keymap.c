@@ -64,9 +64,9 @@ void switch_key_by_os(uint16_t macos_key, uint16_t other_key, keyrecord_t *recor
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default
   [DEF] = LAYOUT_universal(
-    KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
-    KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                            KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  ,
-    KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_QUOT  ,
+    KC_Q        , KC_W     , KC_F     , KC_P         , KC_G         ,                                 KC_J     , KC_L     , KC_U     , KC_Y     , KC_QUOT,
+    KC_A        , KC_R     , KC_S     , KC_T         , KC_D         ,                                 KC_H     , KC_N     , KC_E     , KC_I     , KC_O   ,
+    KC_Z        , KC_X     , KC_C     , KC_V         , KC_B         ,                                 KC_K     , KC_M     , KC_COMM  , KC_DOT   , KC_SCLN,
     _______     , _______  , _______  , KC_LSFT      , LA_NAV      , KC_TAB,               KC_SPC,   LA_SYM    , XXXXXXX  , XXXXXXX  , XXXXXXX  , SCRL_TO
   ),
   [MOU] = LAYOUT_universal(
@@ -78,12 +78,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [SYM] = LAYOUT_universal(
     KC_ESC      , KC_LBRC  , KC_LCBR  , KC_LPRN      , KC_TILD      ,                                KC_CIRC   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_GRV ,
     KC_MINS     , KC_ASTR  , KC_EQL   , KC_UNDS      , KC_DLR       ,                                KC_HASH   , OS_SHFT  , OS_CMD   , OS_ALT   , OS_CTRL,
-    KC_PLUS     , KC_PIPE  , KC_AT    , KC_SLSH      , KC_PERC      ,                                XXXXXXX   , KC_BSLS  , KC_AMPR  , KC_EXLM  , KC_QUES,
+    KC_PLUS     , KC_PIPE  , KC_AT    , KC_SLSH      , KC_PERC      ,                                XXXXXXX   , KC_BSLS  , KC_AMPR  , KC_QUES  , KC_EXLM,
     _______     , MACRO1   , _______  , _______      , _______      , _______   ,         _______ ,  _______   , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),
   [NAV] = LAYOUT_universal(
-    KC_TAB      , SW_WIN   , TAB_L    , TAB_R        , KC_VOLU      ,                                KC_CAPS   , MY_HOME  , XXXXXXX  , MY_END   , KC_DEL,
-    OS_CTRL     , OS_ALT   , OS_CMD   , OS_SHFT      , KC_VOLD      ,                                KC_LEFT   , KC_DOWN  , KC_UP    , KC_RGHT  , KC_BSPC,
+    KC_TAB      , SW_WIN   , TAB_L    , TAB_R        , KC_VOLU      ,                                KC_CAPS   , MY_HOME  , KC_UP    , MY_END   , KC_DEL,
+    OS_CTRL     , OS_ALT   , OS_CMD   , OS_SHFT      , KC_VOLD      ,                                XXXXXXX   , KC_LEFT  , KC_DOWN  , KC_RGHT  , KC_BSPC,
     SPACE_L     , SPACE_R  , BACK     , FWD          , KC_MUTE      ,                                SW_TAB    , KC_PGDN  , KC_PGUP  , SW_LANG  , KC_ENT,
     _______     , _______  , _______  , _______      , _______      ,  _______ ,           _______  ,   _______ , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),

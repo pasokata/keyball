@@ -17,3 +17,13 @@ void update_swapper(
     uint16_t trigger,
     uint16_t keycode,
     keyrecord_t *record);
+
+void update_swapper2(
+    bool *active,
+    uint16_t cmdish,
+    uint16_t tabish1,
+    uint16_t tabish2,
+    uint16_t trigger1,
+    uint16_t trigger2,
+    uint16_t keycode,
+    keyrecord_t *record);

@@ -7,8 +7,6 @@
 
 #define FWD A(KC_RGHT)
 #define BACK A(KC_LEFT)
-#define TAB_L C(S(KC_TAB))
-#define TAB_R C(KC_TAB)
 #define SPACE_L A(G(KC_LEFT))
 #define SPACE_R A(G(KC_RGHT))
 #define LA_SYM MO(SYM)
@@ -16,6 +14,7 @@
 #define KC_VOLU KC_KB_VOLUME_UP
 #define KC_VOLD KC_KB_VOLUME_DOWN
 #define KC_MUTE KC_KB_MUTE
+#define TERM A(C(KC_T))
 
 enum layers
 {
@@ -34,14 +33,14 @@ enum custom_keycodes
   OS_ALT,
   OS_CMD,
 
-  SW_WIN,  // Switch to next window         (cmd-tab)
-  SW_LANG, // Switch to next input language (ctl-spc)
-  SW_TAB,  // Switch to next tab            (ctl-tab)
+  SW_WIN,   // Switch to next window         (cmd-tab)
+  SW_LANG,  // Switch to next input language (ctl-spc)
+  SW_TAB_L, // Switch to prev tab            (ctl-tab)
+  SW_TAB_R, // Switch to next tab            (ctl-tab)
 
   MACRO1,
   H_SCRL,
 };
-
 
 // TODO: mod keys for mouse layer
 
@@ -57,24 +56,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [MOU] = LAYOUT_universal(
     _______  , _______  , _______  , _______  , _______  ,                            _______  , _______  , _______  , _______  , _______  ,
     _______  , _______  , _______  , _______  , _______  ,                            KC_BTN5  , SCRL_MO  , H_SCRL   , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , OSL(MOU)    ,
-    _______  , _______  , _______  , _______  , _______  , _______  ,      _______,   _______  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
+    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , TG(MOU)    ,
+    _______  , _______  , _______  , _______  , LA_NAV   , _______  ,      _______,   LA_SYM   , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
   ),
   [SYM] = LAYOUT_universal(
-    KC_ESC      , KC_LBRC  , KC_LCBR  , KC_LPRN      , KC_TILD      ,                                KC_CIRC   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_GRV ,
-    KC_MINS     , KC_ASTR  , KC_EQL   , KC_UNDS      , KC_DLR       ,                                KC_HASH   , OS_CMD   , OS_CTRL  , OS_SHFT  , OS_ALT ,
-    KC_PLUS     , KC_PIPE  , KC_AT    , KC_SLSH      , KC_PERC      ,                                XXXXXXX   , KC_BSLS  , KC_AMPR  , KC_QUES  , KC_EXLM,
+    KC_TAB      , KC_LBRC  , KC_LCBR  , KC_LPRN      , KC_TILD      ,                                KC_CIRC   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_GRV ,
+    KC_MINS     , KC_ASTR  , KC_EQL   , KC_UNDS      , KC_DLR       ,                                KC_HASH   , OS_CTRL  , OS_SHFT  , OS_ALT   , OS_CMD ,
+    KC_PLUS     , KC_PIPE  , KC_AT    , KC_SLSH      , KC_PERC      ,                                XXXXXXX   , KC_BSLS  , KC_AMPR  , KC_EXLM  , KC_QUES,
     _______     , MACRO1   , _______  , _______      , _______      , _______   ,         _______ ,  _______   , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),
   [NAV] = LAYOUT_universal(
-    KC_TAB      , SW_WIN   , TAB_L    , TAB_R        , KC_VOLU      ,                                KC_CAPS   , KC_HOME  , KC_UP    , KC_END   , KC_DEL,
-    OS_ALT      , OS_SHFT  , OS_CTRL  , OS_CMD       , KC_VOLD      ,                                XXXXXXX   , KC_LEFT  , KC_DOWN  , KC_RGHT  , KC_BSPC,
-    SPACE_L     , SPACE_R  , BACK     , FWD          , KC_MUTE      ,                                SW_TAB    , KC_PGUP  , KC_PGDN  , SW_LANG  , KC_ENT,
+    KC_ESC      , SW_WIN   , SW_TAB_L , SW_TAB_R     , KC_VOLU      ,                                KC_CAPS   , KC_HOME  , KC_UP    , KC_END   , KC_DEL,
+    OS_CMD      , OS_ALT   , OS_SHFT  , OS_CTRL      , KC_VOLD      ,                                XXXXXXX   , KC_LEFT  , KC_DOWN  , KC_RGHT  , KC_BSPC,
+    SPACE_L     , SPACE_R  , BACK     , FWD          , KC_MUTE      ,                                TERM      , KC_PGUP  , KC_PGDN  , SW_LANG  , KC_ENT,
     _______     , _______  , _______  , _______      , _______      ,  _______ ,           _______  ,   _______ , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),
   [NUM] = LAYOUT_universal(
     KC_1        , KC_2     , KC_3     , KC_4         , KC_5         ,                                 KC_6     , KC_7     , KC_8     , KC_9     , KC_0,
-    OS_ALT      , OS_SHFT  , OS_CTRL  , OS_CMD       , KC_F11       ,                                 KC_F12   , OS_CMD   , OS_CTRL  , OS_SHFT  , OS_ALT ,
+    OS_CMD      , OS_ALT   , OS_SHFT  , OS_CTRL      , KC_F11       ,                                 KC_F12   , OS_CTRL  , OS_SHFT  , OS_ALT   , OS_CMD, 
     KC_F1       , KC_F2    , KC_F3    , KC_F4        , KC_F5        ,                                 KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10,
     _______     , _______  , _______  , _______      , _______      , _______  ,          _______ ,  _______   , _______  , _______  , _______  , _______ 
   )
@@ -156,13 +155,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   }
 
   update_swapper(
-      &sw_win_active, KC_LGUI, KC_TAB, SW_WIN,
+      &sw_win_active, KC_LALT, KC_TAB, SW_WIN,
       keycode, record);
   update_swapper(
       &sw_lang_active, KC_LCTL, KC_SPC, SW_LANG,
       keycode, record);
-  update_swapper(
-      &sw_tab_active, KC_LCTL, KC_TAB, SW_TAB,
+  update_swapper2(
+      &sw_tab_active, KC_LCTL, S(KC_TAB), KC_TAB, SW_TAB_L, SW_TAB_R,
       keycode, record);
 
   update_oneshot(

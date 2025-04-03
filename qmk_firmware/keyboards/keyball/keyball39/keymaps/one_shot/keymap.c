@@ -5,8 +5,8 @@
 #include "lib/keyball/keyball.h"
 #include "secret.h"
 
-#define FWD A(KC_RGHT)
-#define BACK A(KC_LEFT)
+#define FWD KC_BTN5
+#define BACK KC_BTN4
 #define SPACE_L A(G(KC_LEFT))
 #define SPACE_R A(G(KC_RGHT))
 #define LA_SYM MO(SYM)
@@ -48,16 +48,16 @@ enum custom_keycodes
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default
   [DEF] = LAYOUT_universal(
-    KC_Q        , KC_W     , KC_F     , KC_P         , KC_G         ,                                 KC_J     , KC_L     , KC_U     , KC_Y     , KC_QUOT,
+    KC_Q        , KC_W     , KC_F     , KC_P         , KC_G         ,                                 KC_J     , KC_L     , KC_U     , KC_Y     , KC_SCLN,
     KC_A        , KC_R     , KC_S     , KC_T         , KC_D         ,                                 KC_H     , KC_N     , KC_E     , KC_I     , KC_O   ,
-    KC_Z        , KC_X     , KC_C     , KC_V         , KC_B         ,                                 KC_K     , KC_M     , KC_COMM  , KC_DOT   , KC_SCLN,
+    KC_Z        , KC_X     , KC_C     , KC_V         , KC_B         ,                                 KC_K     , KC_M     , KC_COMM  , KC_DOT   , KC_QUOT,
     _______     , _______  , _______  , KC_LSFT      , LA_NAV      , KC_TAB,               KC_SPC,   LA_SYM    , XXXXXXX  , XXXXXXX  , XXXXXXX  , SCRL_TO
   ),
   [MOU] = LAYOUT_universal(
     _______  , _______  , _______  , _______  , _______  ,                            _______  , _______  , _______  , _______  , _______  ,
     _______  , _______  , _______  , _______  , _______  ,                            KC_BTN5  , SCRL_MO  , H_SCRL   , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , TG(MOU)    ,
-    _______  , _______  , _______  , _______  , LA_NAV   , _______  ,      _______,   LA_SYM   , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
+    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , MO(MOU)    ,
+    _______  , _______  , _______  , _______  , _______   , _______  ,      _______,  _______  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
   ),
   [SYM] = LAYOUT_universal(
     KC_TAB      , KC_LBRC  , KC_LCBR  , KC_LPRN      , KC_TILD      ,                                KC_CIRC   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_GRV ,
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [NAV] = LAYOUT_universal(
     KC_ESC      , SW_WIN   , SW_TAB_L , SW_TAB_R     , KC_VOLU      ,                                KC_CAPS   , KC_HOME  , KC_UP    , KC_END   , KC_DEL,
     OS_CMD      , OS_ALT   , OS_SHFT  , OS_CTRL      , KC_VOLD      ,                                XXXXXXX   , KC_LEFT  , KC_DOWN  , KC_RGHT  , KC_BSPC,
-    SPACE_L     , SPACE_R  , BACK     , FWD          , KC_MUTE      ,                                TERM      , KC_PGUP  , KC_PGDN  , SW_LANG  , KC_ENT,
+    SPACE_L     , SPACE_R  , BACK     , FWD          , KC_MUTE      ,                                TERM      , KC_PGDN  , KC_PGUP  , SW_LANG  , KC_ENT,
     _______     , _______  , _______  , _______      , _______      ,  _______ ,           _______  ,   _______ , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),
   [NUM] = LAYOUT_universal(

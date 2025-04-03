@@ -1,0 +1,1 @@
+#define MACRO1_STR "Hogezakihogeo1?"

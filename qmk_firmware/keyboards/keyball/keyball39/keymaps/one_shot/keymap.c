@@ -147,6 +147,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
   if (keycode == H_SCRL){
     keyball_set_scrollsnap_mode( record->event.pressed ? KEYBALL_SCROLLSNAP_MODE_HORIZONTAL : KEYBALL_SCROLLSNAP_MODE_VERTICAL);
+    keyball_set_scroll_mode(record->event.pressed);
     return false;
   }
   if (keycode == MACRO1 && record->event.pressed)
@@ -180,7 +181,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
   return true;
 }
-
+bool is_mouse_record_user(uint16_t keycode, keyrecord_t* record){
+    switch (keycode) {
+        case H_SCRL:
+            return true;
+    }
+    return false;
+}
 
 
 #ifdef OLED_ENABLE

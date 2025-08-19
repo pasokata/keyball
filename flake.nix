@@ -17,8 +17,9 @@
             qmk
           ];
           shellHook = ''
+            git submodule update --init --recursive
             export QMK_HOME="~/keyball/__qmk__"
-            ln -s qmk_firmware/keyboards/keyball __qmk__/keyboards/keyball
+            ln -s ~/keyball/qmk_firmware/keyboards/keyball __qmk__/keyboards/keyball
           '';
         };
       }

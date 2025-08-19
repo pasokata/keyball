@@ -13,9 +13,12 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          packages = [ pkgs.cowsay ];
+          packages = with pkgs; [
+            qmk
+          ];
           shellHook = ''
-            export DEBUG=1
+            export QMK_HOME="~/keyball/__qmk__"
+            ln -s qmk_firmware/keyboards/keyball __qmk__/keyboards/keyball
           '';
         };
       }

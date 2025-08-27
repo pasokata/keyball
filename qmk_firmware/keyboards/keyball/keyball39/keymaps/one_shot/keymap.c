@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC      , SW_WIN   , SW_TAB_L , SW_TAB_R     , KC_VOLU      ,                                KC_DOWN   , KC_RGHT  , KC_HOME  , KC_END   , KC_DEL,
     OS_CMD      , OS_ALT   , OS_SHFT  , OS_CTRL      , KC_VOLD      ,                                KC_LEFT   , ZELLIJ   , _______  , APPMENU  , KC_BSPC,
     SPACE_L     , SPACE_R  , BACK     , FWD          , KC_MUTE      ,                                KC_UP     , KC_PGDN  , KC_PGUP  , SW_LANG  , KC_ENT,
-    _______     , _______  , TERM     , _______      , _______      ,  _______ ,           _______  ,  _______ , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
+    _______     , TERM     , _______  , _______      , _______      ,  _______ ,           _______  ,  _______ , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),
   [NUM] = LAYOUT_universal(
     KC_1        , KC_2     , KC_3     , KC_4         , KC_5         ,                                 KC_6     , KC_7     , KC_8     , KC_9     , KC_0,

@@ -20,7 +20,9 @@
 // I don't open multiple of the same app in a session, hence lower priority
 #define TERM A(C(KC_T))
 #define EXPL G(KC_E)
-#define SCE A(KC_E)
+#define SCE A(KC_E) // zellij edit mode
+#define VIMCW C(KC_W) // vim window key
+#define VIMCY C(KC_Y) // vim select key
 
 enum layers
 {
@@ -59,23 +61,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Z        , KC_X     , KC_C     , KC_V         , KC_B         ,                                 KC_K     , KC_M     , KC_COMM  , KC_DOT   , KC_QUOT,
     G(KC_L)     , KC_PSCR  , _______  , KC_LSFT      , LA_NAV      , KC_TAB,               KC_SPC,   LA_SYM    , XXXXXXX  , XXXXXXX  , XXXXXXX  , SCRL_TO
   ),
-  [MOU] = LAYOUT_universal(
+  [MOU] = LAYOUT_universal( 
     _______  , _______  , _______  , _______  , _______  ,                            _______  , _______  , _______  , _______  , _______  ,
     _______  , _______  , _______  , _______  , _______  ,                            KC_BTN5  , H_SCRL   , SCRL_MO  , _______  , _______  ,
     _______  , _______  , _______  , _______  , _______  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , MO(MOU)    ,
     _______  , _______  , _______  , _______  , _______   , _______  ,      _______,  _______  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
   ),
   [SYM] = LAYOUT_universal(
-    KC_TAB      , KC_LBRC  , KC_LCBR  , KC_LPRN      , KC_TILD      ,                                KC_CIRC   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_GRV ,
-    KC_MINS     , KC_ASTR  , KC_EQL   , KC_UNDS      , KC_DLR       ,                                KC_HASH   , OS_CTRL  , OS_SHFT  , OS_ALT   , OS_CMD ,
+    KC_TAB      , KC_LBRC  , KC_LCBR  , KC_LPRN      , KC_TILD      ,                                KC_HASH   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_GRV ,
+    KC_MINS     , KC_ASTR  , KC_EQL   , KC_UNDS      , KC_CIRC      ,                                KC_DLR    , OS_CTRL  , OS_SHFT  , OS_ALT   , OS_CMD ,
     KC_PLUS     , KC_PIPE  , KC_AT    , KC_SLSH      , KC_PERC      ,                                XXXXXXX   , KC_BSLS  , KC_AMPR  , KC_EXLM  , KC_QUES,
-    _______     , MACRO1   , _______  , _______      , _______      , _______   ,         _______ ,  _______   , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
+    _______     , MACRO1   , _______  , _______      , _______      , VIMCW    ,          _______ ,  _______   , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),
   [NAV] = LAYOUT_universal(
     KC_ESC      , SW_WIN   , SW_TAB_L , SW_TAB_R     , KC_VOLU      ,                                KC_DOWN   , KC_RGHT  , KC_HOME  , KC_END   , KC_DEL,
     OS_CMD      , OS_ALT   , OS_SHFT  , OS_CTRL      , KC_VOLD      ,                                KC_LEFT   , ZELLIJ   , SCE      , APPMENU  , KC_BSPC,
     SPACE_L     , SPACE_R  , BACK     , FWD          , KC_MUTE      ,                                KC_UP     , KC_PGDN  , KC_PGUP  , SW_LANG  , KC_ENT,
-    _______     , TERM     , _______  , _______      , _______      ,  _______ ,           _______  ,  _______ , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
+    _______     , TERM     , _______  , _______      , _______      ,  _______ ,           VIMCY    ,  _______ , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),
   [NUM] = LAYOUT_universal(
     KC_1        , KC_2     , KC_3     , KC_4         , KC_5         ,                                 KC_6     , KC_7     , KC_8     , KC_9     , KC_0,

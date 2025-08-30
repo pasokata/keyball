@@ -16,7 +16,9 @@
           packages = with pkgs; [
             qmk
           ];
-          shellHook = '''';
+          shellHook = ''
+            echo hello
+          '';
         };
       }
     );

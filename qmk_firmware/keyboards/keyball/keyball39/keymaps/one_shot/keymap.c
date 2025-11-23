@@ -63,15 +63,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [MOU] = LAYOUT_universal( 
     _______  , _______  , _______  , _______  , _______  ,                            _______  , _______  , _______  , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN5  , H_SCRL   , SCRL_MO  , _______  , _______  ,
-    _______  , _______  , _______  , _______  , _______  ,                            KC_BTN4  , KC_BTN1  , KC_BTN3  , KC_BTN2  , MO(MOU)    ,
+    _______  , _______  , _______  , _______  , _______  ,                            _______  , H_SCRL   , SCRL_MO  , _______  , _______  ,
+    _______  , _______  , _______  , _______  , _______  ,                            _______  , KC_BTN1  , KC_BTN3  , KC_BTN2  , MO(MOU)    ,
     _______  , _______  , _______  , _______  , _______   , _______  ,      _______,  _______  , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______ 
   ),
   [SYM] = LAYOUT_universal(
-    KC_TAB      , KC_LBRC  , KC_LCBR  , KC_LPRN      , KC_TILD      ,                                KC_HASH   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_GRV ,
+    KC_ESC      , KC_LBRC  , KC_LCBR  , KC_LPRN      , KC_TILD      ,                                KC_HASH   , KC_RPRN  , KC_RCBR  , KC_RBRC  , KC_GRV ,
     KC_MINS     , KC_ASTR  , KC_EQL   , KC_UNDS      , KC_CIRC      ,                                KC_DLR    , OS_CTRL  , OS_SHFT  , OS_ALT   , OS_CMD ,
     KC_PLUS     , KC_PIPE  , KC_AT    , KC_SLSH      , KC_PERC      ,                                XXXXXXX   , KC_BSLS  , KC_AMPR  , KC_EXLM  , KC_QUES,
-    _______     , MACRO1   , _______  , _______      , _______      , KC_ESC ,          _______ ,  _______   , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
+    _______     , MACRO1   , _______  , _______      , _______      , _______ ,          _______ ,  _______   , XXXXXXX  , XXXXXXX  , XXXXXXX  , _______
   ),
   [NAV] = LAYOUT_universal(
     KC_ESC      , SW_WIN   , SW_TAB_L , SW_TAB_R     , KC_VOLU      ,                                KC_DOWN   , KC_RGHT  , KC_HOME  , KC_END   , KC_DEL,

@@ -97,16 +97,13 @@ layer_state_t layer_state_set_user(layer_state_t state)
     keyball_set_scrollsnap_mode(KEYBALL_SCROLLSNAP_MODE_VERTICAL);
     break;
   case SYM:
-    rgblight_sethsv(HSV_PINK);
     break;
   case NAV:
-    rgblight_sethsv(HSV_MAGENTA);
     break;
   case NUM:
-    rgblight_sethsv(HSV_PURPLE);
     break;
   case MOU:
-    rgblight_sethsv(HSV_RED);
+    rgblight_sethsv(HSV_WHITE);
     break;
   }
   return state;
